@@ -1,6 +1,7 @@
-import { useDispatch, useSelector } from "react-redux"
-import { useState, useEffect } from "react";
-import { getFlatsData } from "../../Redux/Flats/flat.action";
+import { Divider } from "@chakra-ui/react"
+import axios from "axios"
+import { useEffect } from "react"
+import { useParams } from "react-router-dom"
 import {
     Table,
     Thead,
@@ -14,50 +15,20 @@ import {
     Button,
     Box,
   } from '@chakra-ui/react'
-import { Search } from "./HomeComponents/Search";
-import { Sort } from "./HomeComponents/Sort";
-import { Filter } from "./HomeComponents/Filter";
 
 
-export const Home = ()=>{
-    const user = useSelector((store)=>store.auth.user);
-    return (
-        <div>
-        {!user?<HomeNoUser/>:<HomeWithUser user={user}/>}
-        </div>
-    )
-}
-
-
-
-const HomeNoUser = ()=>{
-    return(
-        <div>
-            <h1>Welcome User!</h1>
-            <p>You have not logged in. Please login to access flat and resident details</p>
-        </div>
-    )
-}
-
-const HomeWithUser = ({user})=>{
-    const flats = useSelector((store)=>store.flats.flats)
-    const dispatch = useDispatch();
+export const ShowResidents = ()=>{
+    const [flat, setFlat] = useState({})
+    const {id} = useParams()
 
     useEffect(()=>{
-        dispatch(getFlatsData())
+        axios.get(`http://localhost:2345/resident/flat/${id}`).then(({data})=>{
+            setFlat(data);
+        })
     },[])
-
-
     return(
         <div>
-            <h1>Hello {user.username}</h1>
-            <Search/>
-            <Box display="flex" justifyContent="center" gap="20px" margin="20px" >
-            <Sort/>
-            <Filter/>
-            </Box>
-            
-            <TableContainer width="80%" margin="auto" marginTop="30px">
+            {flat&&<TableContainer width="80%" margin="auto" marginTop="30px">
                 <Table variant='striped'>
                     <Thead border="2px solid teal">
                     <Tr>
@@ -85,7 +56,7 @@ const HomeWithUser = ({user})=>{
                     
                     </Tbody>
                 </Table>
-                </TableContainer>
+                </TableContainer>}
         </div>
     )
 }

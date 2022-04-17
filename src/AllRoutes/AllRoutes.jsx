@@ -14,6 +14,7 @@ export const AllRoutes = ()=>{
             <Route path="/register" element={<Register/>}/>
             <Route path="/addflat" element = {<AddFlats/>}/>
             <Route path="/addresident" element={<AddResidents/>}/>
+            <Route path="/flat/:id" element={"Details of flat members"}/>
             <Route path="*" element={"404 Page not found"}/>
         </Routes>
     )

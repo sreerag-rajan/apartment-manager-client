@@ -3,7 +3,7 @@ import axios from "axios";
 export const GET_FLATS = "GET_FLATS"
 
 
-const getFlats = (payload) => ({type: GET_FLATS, payload});
+export const getFlats = (payload) => ({type: GET_FLATS, payload});
 
 
 
