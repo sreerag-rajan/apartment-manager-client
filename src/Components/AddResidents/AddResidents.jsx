@@ -74,7 +74,7 @@ export const AddResidents = ()=>{
                 })}
                 
             </Select>
-            {formData.name&&formData.age&&formData.gender&&formData.flat?<Button colorScheme={"teal"} onClick={handleSubmit} marginTop="10px">Add Flat</Button>:<Button disabled colorScheme={"teal"} onClick={handleSubmit} marginTop="10px">Add Flat</Button>  }           
+            {formData.name&&formData.age&&formData.gender&&formData.flat?<Button colorScheme={"teal"} onClick={handleSubmit} marginTop="10px">Add Resident</Button>:<Button disabled colorScheme={"teal"} onClick={handleSubmit} marginTop="10px">Add Resident</Button>  }           
         </FormControl>
         </Box>
     )

@@ -31,6 +31,7 @@ import { Sort } from "./HomeComponents/Sort";
 import { Filter } from "./HomeComponents/Filter";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Pagination } from "./HomeComponents/Pagination";
 
 
 export const Home = ()=>{
@@ -161,6 +162,10 @@ const HomeWithUser = ({user})=>{
                     </Tbody>
                 </Table>
                 </TableContainer>
+
+                <Pagination/>
+
+
                 <Modal isOpen={isOpen} onClose={onClose}>
                     <ModalOverlay />
                     <ModalContent>
