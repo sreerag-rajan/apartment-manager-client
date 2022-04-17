@@ -12,3 +12,9 @@ export const getFlatsData = ()=>(dispatch)=>{
         dispatch(getFlats(data));
     })
 }
+
+export const addFlat = (payload)=>(dispatch)=>{
+    axios.post("http://localhost:2345/flat", payload).then(()=>{
+        dispatch(getFlatsData());
+    })
+}

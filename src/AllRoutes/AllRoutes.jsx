@@ -1,4 +1,6 @@
 import { Route, Routes } from "react-router-dom"
+import { AddFlats } from "../Components/AddFlats/AddFlats"
+import { AddResidents } from "../Components/AddResidents/AddResidents"
 import { Home } from "../Components/Home/Home"
 import { Login } from "../Components/Login/Login"
 import { Register } from "../Components/Register/Register"
@@ -10,8 +12,8 @@ export const AllRoutes = ()=>{
             <Route path="/" element={<Home/>}/>
             <Route path="/login" element={<Login/>}/>
             <Route path="/register" element={<Register/>}/>
-            <Route path="/addflat" element = {"Add Flat"}/>
-            <Route path="/addresident" element={"Add Resident"}/>
+            <Route path="/addflat" element = {<AddFlats/>}/>
+            <Route path="/addresident" element={<AddResidents/>}/>
             <Route path="*" element={"404 Page not found"}/>
         </Routes>
     )

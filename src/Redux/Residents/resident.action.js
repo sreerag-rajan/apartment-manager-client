@@ -12,3 +12,9 @@ export const getResidentsData = (id)=>(dispatch)=>{
         dispatch(getResidents(data));
     })
 }
+
+export const addResident = (payload)=>(dispatch)=>{
+    axios.post('http://localhost:2345/resident',payload).then((res)=>{
+        console.log(res);
+    })
+}
