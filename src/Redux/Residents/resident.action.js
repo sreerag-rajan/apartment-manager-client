@@ -18,3 +18,10 @@ export const addResident = (payload)=>(dispatch)=>{
         console.log(res);
     })
 }
+
+export const deleteResident = (residentId, flatId)=>(dispatch)=>{
+    
+    axios.delete(`http://localhost:2345/resident/${residentId}`).then(()=>{
+        dispatch(getResidentsData(flatId))
+    })
+}

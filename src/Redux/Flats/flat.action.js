@@ -18,3 +18,9 @@ export const addFlat = (payload)=>(dispatch)=>{
         dispatch(getFlatsData());
     })
 }
+
+export const deleteFlat = (payload)=>(dispatch)=>{
+    axios.delete(`http://localhost:2345/flat/${payload}`).then(()=>{
+        dispatch(getFlatsData())
+    })
+}
