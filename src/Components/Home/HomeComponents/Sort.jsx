@@ -8,7 +8,7 @@ export const Sort = ()=>{
     const dispatch = useDispatch()
     const handleChange = (e)=>{
         const {value} = e.target;
-        axios.get(`http://localhost:2345/flat?sort=${value}`).then(({data})=>{
+        axios.get(`https://apartment-manager-backend.herokuapp.com/flat?sort=${value}`).then(({data})=>{
             dispatch(getFlats(data));
         })
     }

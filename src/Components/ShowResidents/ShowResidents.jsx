@@ -47,7 +47,7 @@ export const ShowResidents = ()=>{
     },[])
     
     useEffect(()=>{
-        axios.get(`http://localhost:2345/resident/flat/${id}`).then(({data})=>{
+        axios.get(`https://apartment-manager-backend.herokuapp.com/resident/flat/${id}`).then(({data})=>{
             setresidents(data);
             let x = `${data[0].flat.block} ${data[0].flat.number}` 
             setFlat(x); 
@@ -89,8 +89,8 @@ export const ShowResidents = ()=>{
 
     const handleSubmit= (e)=>{
         e.preventDefault();
-        axios.patch(`http://localhost:2345/resident/${editResident._id}`, formData).then(()=>{
-            axios.get(`http://localhost:2345/resident/flat/${id}`).then(({data})=>{
+        axios.patch(`https://apartment-manager-backend.herokuapp.com/resident/${editResident._id}`, formData).then(()=>{
+            axios.get(`https://apartment-manager-backend.herokuapp.com/flat/${id}`).then(({data})=>{
             setresidents(data);
             let x = `${data[0].flat.block} ${data[0].flat.number}` 
             setFlat(x); 

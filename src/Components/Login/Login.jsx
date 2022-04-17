@@ -29,7 +29,7 @@ export const Login = ()=>{
 
     const handleSubmit = (e)=>{
         e.preventDefault();
-        axios.post("http://localhost:2345/auth/login", formData).then((res)=>{
+        axios.post("https://apartment-manager-backend.herokuapp.com/auth/login", formData).then((res)=>{
             console.log(res.headers, res.data);
             const payload = {
                 id: res.data.user._id,

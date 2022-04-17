@@ -18,7 +18,7 @@ export const Pagination = ()=>{
         if(page+val>0){
             setPage(page+val)
         let x = page+val;
-        axios.get(`http://localhost:2345/flat?page=${x}`).then(({data})=>{
+        axios.get(`https://apartment-manager-backend.herokuapp.com/flat?page=${x}`).then(({data})=>{
             dispatch(getFlats(data));
         })
         }

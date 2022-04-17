@@ -8,20 +8,20 @@ const getResidents = (payload) => ({type: GET_RESIDENTS, payload});
 
 
 export const getResidentsData = (id)=>(dispatch)=>{
-    axios.get(`http://localhost:2345/resident/flat/${id}`).then(({data})=>{
+    axios.get(`https://apartment-manager-backend.herokuapp.com/resident/flat/${id}`).then(({data})=>{
         dispatch(getResidents(data));
     })
 }
 
 export const addResident = (payload)=>(dispatch)=>{
-    axios.post('http://localhost:2345/resident',payload).then((res)=>{
+    axios.post('https://apartment-manager-backend.herokuapp.com/resident',payload).then((res)=>{
         console.log(res);
     })
 }
 
 export const deleteResident = (residentId, flatId)=>(dispatch)=>{
     
-    axios.delete(`http://localhost:2345/resident/${residentId}`).then(()=>{
+    axios.delete(`https://apartment-manager-backend.herokuapp.com/resident/${residentId}`).then(()=>{
         dispatch(getResidentsData(flatId))
     })
 }

@@ -105,7 +105,7 @@ const HomeWithUser = ({user})=>{
 
     const handleSubmit= (e)=>{
         e.preventDefault();
-        axios.patch(`http://localhost:2345/flat/${editFlat._id}`, formData).then(()=>{
+        axios.patch(`https://apartment-manager-backend.herokuapp.com/flat/${editFlat._id}`, formData).then(()=>{
             dispatch(getFlatsData());
         })
         onClose();

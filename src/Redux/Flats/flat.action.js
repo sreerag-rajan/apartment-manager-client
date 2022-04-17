@@ -8,19 +8,19 @@ export const getFlats = (payload) => ({type: GET_FLATS, payload});
 
 
 export const getFlatsData = ()=>(dispatch)=>{
-    axios.get("http://localhost:2345/flat").then(({data})=>{
+    axios.get("https://apartment-manager-backend.herokuapp.com/flat").then(({data})=>{
         dispatch(getFlats(data));
     })
 }
 
 export const addFlat = (payload)=>(dispatch)=>{
-    axios.post("http://localhost:2345/flat", payload).then(()=>{
+    axios.post("https://apartment-manager-backend.herokuapp.com/flat", payload).then(()=>{
         dispatch(getFlatsData());
     })
 }
 
 export const deleteFlat = (payload)=>(dispatch)=>{
-    axios.delete(`http://localhost:2345/flat/${payload}`).then(()=>{
+    axios.delete(`https://apartment-manager-backend.herokuapp.com/flat/${payload}`).then(()=>{
         dispatch(getFlatsData())
     })
 }

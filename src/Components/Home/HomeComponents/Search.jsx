@@ -13,7 +13,7 @@ export const Search = ()=>{
     }
 
     const handleSubmit = ()=>{
-        axios.get(`http://localhost:2345/flat?q=${q}`).then(({data})=>{
+        axios.get(`https://apartment-manager-backend.herokuapp.com/flat?q=${q}`).then(({data})=>{
             dispatch(getFlats(data));
         })
     }
