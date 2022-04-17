@@ -26,8 +26,8 @@ export const Pagination = ()=>{
     }
     return(
         <div>
-            <Button onClick={()=>{handleChange(-1)}}>Previous</Button>
-            <Button onClick={()=>{handleChange(1)}}>Next</Button>
+            <Button margin="10px" onClick={()=>{handleChange(-1)}}>Previous</Button>
+            <Button margin="10px" onClick={()=>{handleChange(1)}}>Next</Button>
         </div>
     )
 }
