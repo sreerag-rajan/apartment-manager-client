@@ -1,7 +1,7 @@
 import { SET_USER } from "./auth.action";
 
 const initState = {
-    auth:null
+    user:null
 }
 
 export const authReducer = (store = initState, {type,payload})=>{
