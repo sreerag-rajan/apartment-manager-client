@@ -32,6 +32,7 @@ export const Login = ()=>{
         axios.post("http://localhost:2345/auth/login", formData).then((res)=>{
             console.log(res.headers, res.data);
             const payload = {
+                id: res.data.user._id,
                 username: res.data.user.username,
                 email: res.data.user.email,
                 token: res.data.token
@@ -48,7 +49,7 @@ export const Login = ()=>{
             <Input onChange={handleChange} value={formData.email} id='email' type='email' placeholder="Email" />
             <FormLabel htmlFor='password'>Password</FormLabel>
             <Input onChange={handleChange} value={formData.password} id='password' type='password' placeholder="Password" />
-            <Button onClick={handleSubmit} marginTop="10px">Login</Button>            
+            <Button colorScheme={"teal"} onClick={handleSubmit} marginTop="10px">Login</Button>            
         </FormControl>
         </Box>
     )

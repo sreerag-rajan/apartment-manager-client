@@ -41,7 +41,7 @@ export const Register = ()=>{
             <Input onChange={handleChange} value={formData.email} id='email' type='email' placeholder="Email" />
             <FormLabel htmlFor='password'>Password</FormLabel>
             <Input onChange={handleChange} value={formData.password} id='password' type='password' placeholder="Password" />
-            <Button onClick={handleSubmit} marginTop="10px">Register</Button>            
+            <Button colorScheme={"teal"} onClick={handleSubmit} marginTop="10px">Register</Button>            
         </FormControl>
         </Box>
     )
