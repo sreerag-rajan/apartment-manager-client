@@ -13,22 +13,25 @@ import {
 import { useEffect, useState } from "react";
 import { getFlatsData } from "../../Redux/Flats/flat.action";
 import { addResident } from "../../Redux/Residents/resident.action";
+import axios from "axios";
 
 
 export const AddResidents = ()=>{
     const user = useSelector((store)=>store.auth.user);
-    const flats = useSelector((store)=>store.flats.flats);
+    const [flats, setFlats] = useState([])
     const dispatch = useDispatch()
     
     useEffect(()=>{
-        dispatch(getFlatsData())
+        axios.get("https://apartment-manager-backend.herokuapp.com/flat/allflats").then(({data})=>{
+            setFlats(data);
+        })
     },[])
 
     const [formData, setFormData] = useState({
         name: "",
         gender: "",
         age: "",
-        flat: 0,
+        flat: "",
         createdUser : user.id    
     })
 
@@ -44,7 +47,7 @@ export const AddResidents = ()=>{
             name: "",
             gender: "",
             age: "",
-            flat: 0,
+            flat: "",
             createdUser : user.id    
         })
     }
