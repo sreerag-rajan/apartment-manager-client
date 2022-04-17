@@ -1,7 +1,7 @@
 
 import axios from "axios"
 import { useState,useEffect } from "react"
-import { useParams } from "react-router-dom"
+import { Navigate, useParams } from "react-router-dom"
 import {
     Table,
     Thead,
@@ -41,6 +41,7 @@ export const ShowResidents = ()=>{
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [editResident, setEditResident] = useState({})
     const flats = useSelector((store)=>store.flats.flats);
+    const user = useSelector((store)=>store.auth.user);
 
     useEffect(()=>{
         dispatch(getFlatsData())
@@ -104,6 +105,10 @@ export const ShowResidents = ()=>{
             createdUser : editResident.createdUser  
         })
     }
+
+    if(!user){
+        return <Navigate to={"/login"}/>
+    }
     return(
         <div>
             {flat&&<h1>House {flat}</h1>}
@@ -124,8 +129,8 @@ export const ShowResidents = ()=>{
                             <Td>{el.name}</Td>
                             <Td>{el.age}</Td>
                             <Td>{el.gender}</Td>
-                            <Td> <Button onClick={()=>{openModal(el)}} colorScheme={"yellow"}>Edit</Button> </Td>
-                            <Td> <Button onClick={()=>{handleDelete(el._id)}} colorScheme={"red"}>Delete</Button> </Td>
+                            <Td> {user.id===el.createdUser?<Button onClick={()=>{openModal(el)}} colorScheme={"yellow"}>Edit</Button>:<Button disabled onClick={()=>{openModal(el)}} colorScheme={"yellow"}>Edit</Button>}  </Td>
+                            <Td> {user.id===el.createdUser?<Button onClick={()=>{handleDelete(el._id)}} colorScheme={"red"}>Delete</Button>:<Button disabled onClick={()=>{handleDelete(el._id)}} colorScheme={"red"}>Delete</Button>}  </Td>
                         </Tr>
                         })}
                     

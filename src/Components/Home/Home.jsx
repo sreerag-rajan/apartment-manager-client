@@ -154,8 +154,8 @@ const HomeWithUser = ({user})=>{
                             <Td> <Button onClick={()=>{
                                 handleNavigate(el._id)
                             }} colorScheme={"green"}>View</Button> </Td>
-                            <Td> <Button onClick={()=>{openModal(el)}} colorScheme={"yellow"}>Edit</Button> </Td>
-                            <Td> <Button onClick={()=>{handleDelete(el._id)}} colorScheme={"red"}>Delete</Button> </Td>
+                            <Td> {user.id===el.createdUser?<Button onClick={()=>{openModal(el)}} colorScheme={"yellow"}>Edit</Button>:<Button disabled onClick={()=>{openModal(el)}} colorScheme={"yellow"}>Edit</Button>}  </Td>
+                            <Td> {user.id===el.createdUser?<Button onClick={()=>{handleDelete(el._id)}} colorScheme={"red"}>Delete</Button>:<Button disabled onClick={()=>{handleDelete(el._id)}} colorScheme={"red"}>Delete</Button>}  </Td>
                         </Tr>
                         })}
                     
@@ -166,6 +166,7 @@ const HomeWithUser = ({user})=>{
                 <Pagination/>
 
 
+                {/* Edit  MOdal begins from here */}
                 <Modal isOpen={isOpen} onClose={onClose}>
                     <ModalOverlay />
                     <ModalContent>
