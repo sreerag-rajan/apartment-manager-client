@@ -176,7 +176,7 @@ const HomeWithUser = ({user})=>{
                         
                     <FormControl >
                         <FormLabel  htmlFor='residentType'>Type</FormLabel>
-                        <Select value={formData.residentType} id="residentType" placeholder='Select option'>
+                        <Select onChange={handleChange} value={formData.residentType} id="residentType" placeholder='Select option'>
                             <option value='Owner'>Owner</option>
                             <option value='Tenant'>Tenant</option>
                         </Select>

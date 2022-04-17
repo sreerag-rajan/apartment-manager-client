@@ -54,7 +54,7 @@ export const AddResidents = ()=>{
     
     return (
         <Box width="30%" margin="auto" marginTop="40px" border="3px solid teal" padding="20px" borderRadius="30px">
-            <h1>Add A Flat</h1>
+            <h1>Add A Resident</h1>
         <FormControl >
             
             <FormLabel htmlFor='name'>Name</FormLabel>
