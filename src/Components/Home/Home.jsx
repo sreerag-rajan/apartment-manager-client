@@ -17,6 +17,7 @@ import {
 import { Search } from "./HomeComponents/Search";
 import { Sort } from "./HomeComponents/Sort";
 import { Filter } from "./HomeComponents/Filter";
+import { useNavigate } from "react-router-dom";
 
 
 export const Home = ()=>{
@@ -42,10 +43,16 @@ const HomeNoUser = ()=>{
 const HomeWithUser = ({user})=>{
     const flats = useSelector((store)=>store.flats.flats)
     const dispatch = useDispatch();
+    const navigate = useNavigate()
 
     useEffect(()=>{
         dispatch(getFlatsData())
     },[])
+
+    const handleNavigate = (id)=>{
+        console.log(id)
+        navigate(`/flat/${id}`)
+    }
 
 
     return(
@@ -77,7 +84,9 @@ const HomeWithUser = ({user})=>{
                             <Td>{el.block}</Td>
                             <Td>{el.number}</Td>
                             <Td>{el.numberOfResidents}</Td>
-                            <Td> <Button colorScheme={"green"}>View</Button> </Td>
+                            <Td> <Button onClick={()=>{
+                                handleNavigate(el._id)
+                            }} colorScheme={"green"}>View</Button> </Td>
                             <Td> <Button colorScheme={"yellow"}>Edit</Button> </Td>
                             <Td> <Button colorScheme={"red"}>Delete</Button> </Td>
                         </Tr>

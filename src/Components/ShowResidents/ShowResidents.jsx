@@ -1,6 +1,6 @@
-import { Divider } from "@chakra-ui/react"
+
 import axios from "axios"
-import { useEffect } from "react"
+import { useState,useEffect } from "react"
 import { useParams } from "react-router-dom"
 import {
     Table,
@@ -18,37 +18,38 @@ import {
 
 
 export const ShowResidents = ()=>{
-    const [flat, setFlat] = useState({})
+    const [residents, setresidents] = useState([])
+    const [flat, setFlat] = useState("")
     const {id} = useParams()
 
     useEffect(()=>{
         axios.get(`http://localhost:2345/resident/flat/${id}`).then(({data})=>{
-            setFlat(data);
+            console.log(data);
+            setresidents(data);
+            let x = `${data[0].flat.block} ${data[0].flat.number}` 
+            setFlat(x); 
         })
     },[])
     return(
         <div>
-            {flat&&<TableContainer width="80%" margin="auto" marginTop="30px">
+            {flat&&<h1>House {flat}</h1>}
+            {residents&&<TableContainer width="80%" margin="auto" marginTop="30px">
                 <Table variant='striped'>
                     <Thead border="2px solid teal">
                     <Tr>
-                        <Th>Type</Th>
-                        <Th>Block</Th>
-                        <Th>Number</Th>
-                        <Th># of Residents</Th>
-                        <Th>View</Th>
+                        <Th>Name</Th>
+                        <Th>Age</Th>
+                        <Th>Gender</Th>
                         <Th>Edit</Th>
                         <Th>Delete</Th>
                     </Tr>
                     </Thead>
                     <Tbody>
-                        {flats.map((el)=>{
+                        {residents.map((el)=>{
                             return <Tr key={el._id}>
-                            <Td>{el.residentType}</Td>
-                            <Td>{el.block}</Td>
-                            <Td>{el.number}</Td>
-                            <Td>{el.numberOfResidents}</Td>
-                            <Td> <Button colorScheme={"green"}>View</Button> </Td>
+                            <Td>{el.name}</Td>
+                            <Td>{el.age}</Td>
+                            <Td>{el.gender}</Td>
                             <Td> <Button colorScheme={"yellow"}>Edit</Button> </Td>
                             <Td> <Button colorScheme={"red"}>Delete</Button> </Td>
                         </Tr>
