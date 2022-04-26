@@ -6,7 +6,8 @@ import {
     Input,
     Box,
     Button,
-    Select
+    Select,
+    Spinner
   } from '@chakra-ui/react'
 import { useState } from "react";
 import { addFlat } from "../../Redux/Flats/flat.action";
@@ -15,6 +16,7 @@ import { addFlat } from "../../Redux/Flats/flat.action";
 export const AddFlats = ()=>{
     const user = useSelector((store)=>store.auth.user);
     const dispatch = useDispatch()
+    const [loading, setLoading] = useState(false);
     
 
     const [formData, setFormData] = useState({
@@ -32,6 +34,7 @@ export const AddFlats = ()=>{
 
     const handleSubmit= (e)=>{
         e.preventDefault();
+        setLoading(true)
         dispatch(addFlat(formData));
         setFormData({
             residentType: "Owner",
@@ -40,6 +43,8 @@ export const AddFlats = ()=>{
             numberOfResidents: 0,
             createdUser : user.id    
         })
+        setLoading(false);
+        alert("Flat Added Successfully")
     }
     if(!user){
         return <Navigate to="/login"/>
@@ -48,7 +53,7 @@ export const AddFlats = ()=>{
     return (
         <Box width="30%" margin="auto" marginTop="40px" border="3px solid teal" padding="20px" borderRadius="30px">
             <h1>Add A Flat</h1>
-        <FormControl >
+            {loading?<Spinner/>:<FormControl >
             <FormLabel  htmlFor='residentType'>Type</FormLabel>
             <Select onChange={handleChange} value={formData.residentType} id="residentType" placeholder='Select option'>
                 <option value='Owner'>Owner</option>
@@ -59,7 +64,8 @@ export const AddFlats = ()=>{
             <FormLabel htmlFor='number'>Number</FormLabel>
             <Input onChange={handleChange} value={formData.number} id='number' type='number' placeholder="House Number" />
             {formData.residentType&&formData.block&&formData.number?<Button colorScheme={"teal"} onClick={handleSubmit} marginTop="10px">Add Flat</Button>:<Button disabled colorScheme={"teal"} onClick={handleSubmit} marginTop="10px">Add Flat</Button>  }           
-        </FormControl>
+        </FormControl>}
+        
         </Box>
     )
 }
